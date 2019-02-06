@@ -15,11 +15,13 @@ public class Television
     private boolean fhd;
 
     private LocalDate fechaCompra;
+    
+    private int numeroIdentificacion;
 
     /**
      * Constructor for objects of class Television
      */
-    public Television(int pulgadas, String marca, boolean fhd, String fechaComprado)
+    public Television(int pulgadas, String marca, boolean fhd, String fechaComprado, int numeroIdentificacion)
     {
         // initialise instance variables
         this.pulgadas = pulgadas;
@@ -27,6 +29,7 @@ public class Television
         this.fhd = fhd;
         this.fechaCompra = fechaCompra;
         fechaCompra = LocalDate.parse(fechaComprado);
+        this.numeroIdentificacion = numeroIdentificacion;
     }
 
     public int getPulgadas(){
