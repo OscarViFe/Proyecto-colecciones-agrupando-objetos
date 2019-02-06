@@ -8,9 +8,9 @@ import java.time.LocalDate;
 public class Television
 {
     // instance variables - replace the example below with your own
-    private int pulgadas;
-
     private String marca;
+    
+    private int pulgadas;
 
     private boolean fhd;
 
@@ -21,7 +21,7 @@ public class Television
     /**
      * Constructor for objects of class Television
      */
-    public Television(int pulgadas, String marca, boolean fhd, String fechaComprado, int numeroIdentificacion)
+    public Television(String marca, int pulgadas, boolean fhd, String fechaComprado, int numeroIdentificacion)
     {
         // initialise instance variables
         this.pulgadas = pulgadas;
@@ -102,7 +102,10 @@ public class Television
         }
         return stringFHD;
     }
-
+    
+    /**
+     * Devuleve un String con las características del televisor
+     */
     public String getCaracterísticas(){
         String caracteristicas = "";
         caracteristicas = "Television " + marca + " " + pulgadas + " pulgadas " + stringFHD() + " " + fechaCompra + " " + "identificador: " + numeroIdentificacion + "";
