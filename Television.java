@@ -1,10 +1,6 @@
 import java.time.LocalDate;
-/**
- * Write a description of class Television here.
- *
- * @author (your name)
- * @version (a version number or a date)
- */
+
+
 public class Television
 {
     // instance variables - replace the example below with your own
@@ -106,9 +102,17 @@ public class Television
     /**
      * Devuleve un String con las características del televisor
      */
-    public String getCaracterísticas(){
+    public String getCaracteristicas(){
         String caracteristicas = "";
         caracteristicas = "Television " + marca + " " + pulgadas + " pulgadas " + stringFHD() + " " + fechaCompra + " " + "identificador: " + numeroIdentificacion + "";
         return caracteristicas;
+    }
+    
+    /**
+     * devuelve el número de identificación 
+     *
+     */
+    public int getNumeroIdentificacion(){
+        return numeroIdentificacion;
     }
 }
