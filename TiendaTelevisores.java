@@ -20,13 +20,13 @@ public class TiendaTelevisores
     public TiendaTelevisores()
     {
         numeroIdentificacion = 1;
-        ArrayList<Television> televisiones = new ArrayList<Television>();
+        televisiones = new ArrayList<Television>();
     }
 
     /**
      * Permite agregar un nuevo televisor
      */
-    public void AgregarTelevision(String marca, int pulgadas, boolean fhd, String fechaComprado)
+    public void agregarTelevision(String marca, int pulgadas, boolean fhd, String fechaComprado)
     {
         Television nuevaTelevision = new Television(marca, pulgadas, fhd, fechaComprado, numeroIdentificacion);
         televisiones.add(nuevaTelevision);
@@ -52,20 +52,23 @@ public class TiendaTelevisores
         ArrayList<Television> televisionesOrdenadas = new ArrayList<Television>();
         for(Television televisionActual : televisiones){
             televisionesOrdenadas.add(televisionActual);
-
         }
-
-        for(int contadorLento = 0; contadorLento < televisionesOrdenadas.size() - 1; contadorLento ++){
-            for(int contadorRapido = 0; contadorRapido < televisionesOrdenadas.size() - contadorLento -1; contadorRapido ++){
-                if(televisionesOrdenadas.get(contadorRapido).getPulgadas() < televisionesOrdenadas.get(contadorRapido + 1).getPulgadas()){
-                    Television televisionTemporal = televisionesOrdenadas.get(contadorRapido);
-                    televisionesOrdenadas.set(contadorRapido,televisionesOrdenadas.get(contadorRapido + 1));
-                    televisionesOrdenadas.set(contadorRapido +1, televisionTemporal);
-                }
+        int i = 0;
+        while(i  < televisionesOrdenadas.size()){
+            int j =i;
+            Television televisionIntermedia = televisionesOrdenadas.get(i);
+            int posicion = i;
+            while(j > 0 && televisionesOrdenadas.get(j -1).getPulgadas() > televisionIntermedia.getPulgadas() ){
+                posicion = j-1;
+                j --;
             }
+            if (posicion != i){
+                televisionesOrdenadas.add(posicion, televisionIntermedia);
+                televisionesOrdenadas.remove(i +1);
+            }
+            i ++;
         }
-
-        for(Television televisionActual : televisiones){
+        for(Television televisionActual : televisionesOrdenadas){
             cadenaADevolver += televisionActual.getCaracteristicas() + "\n";
         }
         return cadenaADevolver;
@@ -99,7 +102,7 @@ public class TiendaTelevisores
         }
         return cadenaADevolver;
     }
-    
+
     public void fijaPulgadas(int numeroIdentificacion, int pulgadas){
         int contador = 0;
         boolean buscando = true;
