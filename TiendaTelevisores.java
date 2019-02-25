@@ -1,5 +1,4 @@
-
-import java.util.ArrayList;
+import java.util.*;
 import java.time.LocalDate;
 /**
  * Write a description of class Tienda here.
@@ -113,5 +112,34 @@ public class TiendaTelevisores
             }
             contador ++;
         }
+    }
+
+    public String agruparEnColecciones(){
+        HashMap<String,ArrayList> tiposTelevisores = new HashMap<String,ArrayList>();
+        for(int valor = 0; valor < 200; valor += 20 ){
+            ArrayList<Television> televisionesAColocar = new ArrayList<Television>();
+            for(int contador2  = 0; contador2 < televisiones.size(); contador2++ ){
+                if(televisiones.get(contador2).getPulgadas() > valor 
+                && televisiones.get(contador2).getPulgadas() <= (valor + 20)){
+                    televisionesAColocar.add(televisiones.get(contador2));
+                }
+            }
+            if(!televisionesAColocar.isEmpty()){
+                String nombreKey = (valor + 1) + "-" + (valor + 20) + " pulgadas";
+                tiposTelevisores.put(nombreKey, televisionesAColocar);
+            }
+        }
+        String texto = "";
+        for(int valor = 0; valor < 200; valor += 20 ){
+            String clave = (valor + 1) + "-" + (valor + 20) + " pulgadas";
+            if(tiposTelevisores.containsKey(clave)){
+                ArrayList<Television> listaTeles = tiposTelevisores.get(clave);
+                texto += clave + ":\n";
+                for(Television tele : listaTeles){
+                    texto += tele.getCaracteristicas() + "\n";
+                }
+            }
+        }
+        return texto;
     }
 }
